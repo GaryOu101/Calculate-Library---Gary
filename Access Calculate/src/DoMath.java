@@ -14,4 +14,4 @@ public class DoMath {
 		System.out.println(Calculate.discriminant(2,3,6));
 	System.out.println(Calculate.toImproperFrac(3,2,4));
 }
-}
+} ok
