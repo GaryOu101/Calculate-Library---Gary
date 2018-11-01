@@ -90,7 +90,7 @@ public class Calculate {
 		// converts a bionomial multiplcation of (ax+b)(cx+d) into a quadratic equation
 		public static String foil(int a,int b, int c, int d, String n) {
 				
-				return (a*c)+"n^2"+"+"+(a*d+b*c)+"n"+"+"+(b*d);
+				return (a*c)+n+"^2"+"+"+(a*d+b*c)+n+"+"+(b*d);
 							
 		}
 		
@@ -158,10 +158,15 @@ public class Calculate {
 		  //rounds numbers to the 2nd decimal place.
 		  public static double round2(double num1) {
 			  
+			  if (num1 >=0) {	  
 			 double num2=(num1+.005)*100; //adding .005 will change the third decimal place to increment up to be 1 or 0.
 			 double num3= (int)num2;      // we times by 100 to prevent the int from erasing the 2 decimal places.
 			 return num3/100;             // puts the number back to original value rounded up
-		 
+			  }else {
+				  double num2= (num1 - .005) * 100;
+				  double num3 = (int) num2;
+				  return num3 / 100;
+			  }
 		  
 		} 
 		 
@@ -203,6 +208,7 @@ public class Calculate {
 			  }
 		// returns greatest common factor of two numbers
 		    public static int gcf (int num1, int num2) {
+		    	
 	            int answer = 1; // if there are no factors, the answer will be 1
 	                    for (int i = Calculate.min(num1, num2); i>0;i--){ // i is set to the min number, since we know the factors of min is not above it.
 	                        if (Calculate.max(num1, num2) % i==0 && Calculate.min(num1,num2)%i==0){ // increments down until i is a value that is divisible by both numbers.
@@ -215,11 +221,40 @@ public class Calculate {
 	                    return answer;
 	                    }
 	    	
-	    	//returns an approximation of the square root of the value
-	    			  
-    	
-    		
-}
+	    //returns an approximation of the square root of the value
+	    	
+	    	public static double sqrt (double num1) {
+	    			
+	    		double answer = num1/4;                    
+	    		while ((Calculate.absValue((answer*answer)-num1)) >= .005) { // makes difference between input and answer squared less than .005
+	    			answer = ((num1/answer) + answer)/2; //uses newton's method formula (N/A +A)
+	    		}
+	    		return Calculate.round2(answer);  //rounds to 2 decimals
+	    	}
+	    	
+	    //returns the roots of the coefficients of the quadratic formula
+	    	public static String quadForm (int a, int b, int c) {
+	    			
+	    		double answer = (-b+Calculate.sqrt(Calculate.discriminant(a, b, c))) / (2 * a); // use the quadratic equation. One for positive and one for negative
+	    		double answer2 = (-b-Calculate.sqrt(Calculate.discriminant(a, b, c))) / (2 * a);
+	    		if (answer == 0 && answer2 == 0) {  // created a condition if both values are 0, then print no real roots.
+	    			return "no real roots";            
+	    		}else 
+	    			if (answer == answer2) {
+	    			return Calculate.round2(answer) + ""; // when roots are the same, only returns 1 value instead of two.
+	    		}else {
+	    			if (Calculate.round2(answer) < Calculate.round2(answer2)) {
+	    			return Calculate.round2(answer)+"and"+Calculate.round2(answer2); // prints the lower number first
+	    		}else {
+	    			return Calculate.round2(answer2)+" and "+Calculate.round2(answer);
+	    		}
+	    		}
+	    			
+	    	}
+	    		
+	    }
+	
+	    
               
 		  
 	  

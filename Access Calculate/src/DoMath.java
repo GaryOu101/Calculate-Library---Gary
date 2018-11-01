@@ -14,7 +14,7 @@ public class DoMath {
 		System.out.println(Calculate.discriminant(2,3,6));
 		System.out.println(Calculate.toImproperFrac(3,2,4));
 	    System.out.println(Calculate.toMixedNum(7,2));
-	    System.out.println(Calculate.foil(2,3,6,-7,"n"));
+	    System.out.println(Calculate.foil(2,3,6,-7,"x"));
 	    System.out.println(Calculate.isDivisibleBy(5,2));
 		System.out.println(Calculate.absValue(-5));
 		System.out.println(Calculate.max(3,4));
@@ -25,6 +25,8 @@ public class DoMath {
 		System.out.println(Calculate.factorial(4));
 		System.out.println(Calculate.isPrime(5));
 		System.out.println(Calculate.gcf(16, 24));
+		System.out.println(Calculate.sqrt(144));
+		System.out.println(Calculate.quadForm(3, 3, -36));
 		}
 	
 }
